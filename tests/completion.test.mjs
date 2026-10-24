@@ -22,10 +22,19 @@ test('mid-name edit preserves closing punctuation and remaining document',()=>{
 });
 test('unknown ingredients are permitted and no suggestions are invented',()=>assert.deepEqual(run('::ingredients\n(xyzunknown|').items,[]));
 test('UTF-16 positions and trailing spaces remain safe',()=>assert.ok(run('::instructions\n{🍞} <  jul|').items.some(x=>x.label==='julienne')));
-test('exact approved Core identities are present',()=>{assert.equal(vocabulary.entries.length,831);assert.equal(vocabulary.resolve('mixing bowl','equipment')[0].id,'mixing-bowl');assert.equal(vocabulary.resolve('put','process')[0].id,'place');});
+test('exact approved Core identities are present',()=>{assert.equal(vocabulary.entries.length,969);assert.equal(vocabulary.resolve('mixing bowl','equipment')[0].id,'mixing-bowl');assert.equal(vocabulary.resolve('put','process')[0].id,'place');});
 test('all real Corpus files still parse; representative declarations complete',{skip:!process.env.OSF_CORPUS},async()=>{
  const {parseRecipe}=await import('@open-sauce/core');let count=0;const files=[];async function walk(dir){for(const e of await readdir(dir,{withFileTypes:true})){const p=join(dir,e.name);if(e.isDirectory())await walk(p);else if(p.endsWith('.opensauce'))files.push(p);}}await walk(join(process.env.OSF_CORPUS,'examples'));
  for(const file of files){const text=await readFile(file,'utf8'),recipe=parseRecipe(text,{vocabulary});assert.equal(recipe.source,text);assert.equal(recipe.diagnostics.filter(d=>d.severity==='error').length,0,file);count++;}
  assert.equal(count,490);
  const ravioli=await readFile(join(process.env.OSF_CORPUS,'examples/public-domain-recipes/ravioli/ravioli.opensauce'),'utf8');assert.ok(run(ravioli+'\n::instructions\n(tea|').items.some(x=>x.label==='teaspoon'&&x.data.local));
+});
+
+test('refreshed identity inventory and later tranche completions',()=>{
+ assert.deepEqual(Object.fromEntries(['ingredient','equipment','process'].map(k=>[k,vocabulary.entries.filter(e=>e.kind===k).length])),{ingredient:414,equipment:255,process:300});
+ for(const [source,id] of [
+ ['::equipment\n(pasta extr|','equipment:pasta-extruder'],
+ ['::instructions\n<velv|','process:velvet'],
+ ['::instructions\n<tourn|','process:tourne']
+ ])assert.ok(run(source).items.some(i=>i.data.identity===id),id);
 });

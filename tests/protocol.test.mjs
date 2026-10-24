@@ -9,6 +9,7 @@ test('stdio LSP lifecycle, updates, isolation and shutdown',{timeout:20000},asyn
  try{
   const init=await rpc.sendRequest('initialize',{processId:process.pid,rootUri:null,capabilities:{}});assert.equal(init.capabilities.textDocumentSync,2);assert.deepEqual(init.capabilities.completionProvider.triggerCharacters,['<','(']);assert.equal(init.capabilities.hoverProvider,undefined);assert.equal(init.capabilities.diagnosticProvider,undefined);
   await rpc.sendNotification('initialized',{});
+  await assert.rejects(rpc.sendRequest('textDocument/completion',{}),e=>e.code===-32602);
   await rpc.sendNotification('textDocument/didOpen',{textDocument:{uri,languageId:'opensauce',version:1,text:'::instructions\n<jul'}});
   assert.ok((await request(uri,1,4)).items.some(x=>x.label==='julienne'));
   await rpc.sendNotification('textDocument/didChange',{textDocument:{uri,version:2},contentChanges:[{range:{start:{line:1,character:1},end:{line:1,character:4}},text:'wh'}]});

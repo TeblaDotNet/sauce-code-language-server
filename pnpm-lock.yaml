@@ -9,8 +9,8 @@ importers:
   .:
     devDependencies:
       '@open-sauce/core':
-        specifier: file:vendor/open-sauce-core-ce601f0.tgz
-        version: file:vendor/open-sauce-core-ce601f0.tgz
+        specifier: file:vendor/open-sauce-core-2d94d35.tgz
+        version: file:vendor/open-sauce-core-2d94d35.tgz
       '@types/node':
         specifier: 24.10.1
         version: 24.10.1
@@ -185,8 +185,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@open-sauce/core@file:vendor/open-sauce-core-ce601f0.tgz':
-    resolution: {integrity: sha512-+H9pLKto50Ryyp+keo7NZJYyVZ/OCAFj0OOmuUaUtPOYobAaI3IzlI/ZyAzvlUodT/O6OndaH63i3GeDIumgww==, tarball: file:vendor/open-sauce-core-ce601f0.tgz}
+  '@open-sauce/core@file:vendor/open-sauce-core-2d94d35.tgz':
+    resolution: {integrity: sha512-ZkWEEeQ7UZ6fAIFxMJO13ImW1iC9wiBVlng4P2HmAItBOmz7BSfvdFLbHE86qTdW/sDUOel2HzgcEy0Q7nfv1w==, tarball: file:vendor/open-sauce-core-2d94d35.tgz}
     version: 0.1.0
     engines: {node: '>=24'}
     hasBin: true
@@ -309,7 +309,7 @@ snapshots:
   '@esbuild/win32-x64@0.28.2':
     optional: true
 
-  '@open-sauce/core@file:vendor/open-sauce-core-ce601f0.tgz':
+  '@open-sauce/core@file:vendor/open-sauce-core-2d94d35.tgz':
     dependencies:
       yaml: 2.9.1
 

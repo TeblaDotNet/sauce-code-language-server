@@ -1,17 +1,35 @@
-# Validation record — 24 October 2026
+# Validation — Standalone Language Server v1
 
-Core input: ce601f0039a84f00f8809a1618cbb145fad47c9b. Development runtime Node 24; VS Code host 1.141.0 on Windows x64.
+24 October 2026; Language Server 0.2.0 and VS Code extension 0.3.0.
 
-- Server build and TypeScript checks pass.
-- 41 automated server tests pass, including real stdio initialization, full and incremental synchronization, completion, document isolation, close and shutdown.
-- All 490 active Corpus recipes/specifications parse; their complete ASTs match full Core vocabulary output exactly when using the compact runtime snapshot. Accepted-name resolution matches full Core across default, en-GB and en-US locales.
-- Standalone tarball installed offline in an isolated prefix; only one runtime package was installed. Its bundled stdio server passed the lifecycle test with no sibling Core or runtime node_modules dependencies.
-- Six existing VS Code TextMate/configuration tests pass, including representative real recipes read in place.
-- Installed VSIX editor-host tests pass for file recognition, comments, bracket behaviour and indentation in light/dark themes, plus action/equipment/ingredient/local-role completion and comments/raw-source suppression. The host runs in an isolated profile with standalone Node removed from PATH and NODE_PATH empty; VS Code supplies the runtime. Independent built-in word suggestions are filtered out of provider-specific assertions.
-- VSIX inventory checks exclude development source/tests/tools, Core YAML, vendor archives, node_modules, source maps and Corpus recipes. One generated semantic snapshot is embedded in the server. Original runtime dependency notices are included.
+- Core input: 2d94d35ef5e8c5c2e7bfcabb36efe452e5587728; vendor checksum and runtime
+  integrity in core-input.json. 969 identities: 414 ingredients, 255 equipment,
+  300 process/action identities.
+- Language Server build/type checking and 42 tests passed. All 490 active Corpus
+  recipes parse; full-Core and compact-snapshot ASTs are equal. Resolution parity
+  covers aliases/plurals and en-GB/en-US/default locales.
+- Later tranche pasta-extruder, velvet and tourne regressions passed.
+- Windows x64 Bun 1.4.4 standalone: strict framed stdout, Node/executable protocol
+  parity including initialization, full/incremental changes, completion ordering
+  and edits, Unicode paths/text, local roles, document isolation, comments/raw
+  source, invalid/unsupported requests, close, shutdown, early exit, EOF and
+  process termination.
+- Only compatibility change: malformed completion parameters return stable
+  InvalidParams instead of a Node/Bun-specific TypeError.
+- Runtime isolation uses an external Unicode/space-containing directory with
+  Node/Bun/npm/pnpm absent from PATH, no Core/knowledge/dependency directories,
+  and hostile dotenv/bunfig files. No fresh VM or filesystem access sandbox.
+  Node runs the test driver; the executable server needs no installed runtime.
+- Linux x64/ARM64 and macOS x64/ARM64 compile successfully. No native execution,
+  protocol parity, POSIX signal handling, platform signing or notarization claimed.
+- VS Code grammar tests (6) and installed VSIX host tests pass in light/dark themes,
+  including refreshed process/equipment completion and unchanged editing support.
+  External Node is removed from the isolated editor profile's PATH.
+- Final VSIX inspection rejects source/tests/vendor archives/Corpus/YAML/maps and
+  verifies bundled server checksum, version and Core pin.
+- Neovim is unavailable; documented native LSP configuration is not host-tested.
 
-No Neovim editor-host validation is claimed. No new diagnostics, hover, navigation, formatting or preview. Core, Corpus, Site and Vim plugin sources are untouched. Nothing is merged, pushed, published or deployed.
-
-Evidence and local packages: ../_work/vscode-extension/. Final package checksum/inventory is recorded in lsp-package-inventory.json. Host evidence is lsp-host-v1/host-test-result.json. Server tests are lsp-server-tests.log; Core regression log is lsp-core-regression.log. These are local build/audit outputs, not runtime dependencies.
-
-Final Core regression suite: 592 passed. Automatic onLanguage activation passed from the installed final VSIX. Final VSIX: 31 entries, 241460 bytes; SHA-256 87890167f288d19dcd4220567147e0353d21c1784c9190c09826928ba97a74ff.
+Generated manifests contain executable sizes, checksums, source revision/dirty
+status, compiler identity and Core inputs. Final committed-source artifacts and
+protocol/VSIX receipts are recorded in ../_work/standalone-lsp-v1/.
+No source edits in Core, Corpus, Site or Vim plugin; no merge, push or publication.

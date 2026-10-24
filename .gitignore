@@ -4,3 +4,6 @@ generated/
 test-dist/
 *.tgz
 !vendor/*.tgz
+standalone/
+work/
+.bun-cache/

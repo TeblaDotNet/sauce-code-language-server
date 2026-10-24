@@ -1,8 +1,13 @@
 {
   "coreVersion": "0.1.0",
-  "entries": 831,
-  "tarball": "vendor/open-sauce-core-ce601f0.tgz",
-  "sha256": "202bd313659d95c79db0a4ab6b199b4123646644e312959c8509ae64158e268b",
-  "coreCommit": "ce601f0039a84f00f8809a1618cbb145fad47c9b",
-  "runtimeHash": "b5a2d333abf4b677c71f66ba6f76b5ca2525200f6e1fbb5b3b59aaab4dea2a6b"
+  "entries": 969,
+  "counts": {
+    "ingredient": 414,
+    "equipment": 255,
+    "process": 300
+  },
+  "tarball": "vendor/open-sauce-core-2d94d35.tgz",
+  "sha256": "580710c036b7c5de06b5f158e9f51a8a1ff3b56c21241d663b2f629ce7188312",
+  "coreCommit": "2d94d35ef5e8c5c2e7bfcabb36efe452e5587728",
+  "runtimeHash": "9d1e685cc2a1ca142935fbbcca0d4fca47d0f595a34e61a573fc2094dfaef080"
 }
