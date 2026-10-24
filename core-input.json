@@ -1,0 +1,8 @@
+{
+  "coreVersion": "0.1.0",
+  "entries": 831,
+  "tarball": "vendor/open-sauce-core-ce601f0.tgz",
+  "sha256": "202bd313659d95c79db0a4ab6b199b4123646644e312959c8509ae64158e268b",
+  "coreCommit": "ce601f0039a84f00f8809a1618cbb145fad47c9b",
+  "runtimeHash": "b5a2d333abf4b677c71f66ba6f76b5ca2525200f6e1fbb5b3b59aaab4dea2a6b"
+}

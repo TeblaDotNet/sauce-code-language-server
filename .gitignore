@@ -1,0 +1,6 @@
+node_modules/
+dist/
+generated/
+test-dist/
+*.tgz
+!vendor/*.tgz

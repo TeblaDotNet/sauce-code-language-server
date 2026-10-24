@@ -1,0 +1,7 @@
+Open Sauce Food Sauce Code language server
+Copyright (c) 2026 Tebla and Open Sauce Food contributors.
+Server, protocol, completion and test/tooling code: MIT (LICENSES/Core-MIT.txt).
+Authored documentation: CC BY 4.0 (LICENSES/Core-CC-BY-4.0.txt).
+Generated project-owned canonical semantic data: CC0 1.0 (LICENSES/Core-CC0-1.0.txt).
+Bundled dependencies retain their own licences; see THIRD-PARTY-NOTICES.md.
+The pinned development archive in vendor/ retains Core's complete original licensing notices and scopes.

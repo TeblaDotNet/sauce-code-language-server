@@ -1,0 +1,34 @@
+{
+  "name": "@open-sauce/language-server",
+  "version": "0.1.0",
+  "description": "Sauce Code stdio language server: Core-backed completion",
+  "type": "module",
+  "license": "SEE LICENSE IN LICENSE",
+  "engines": {
+    "node": ">=24"
+  },
+  "bin": {
+    "opensauce-language-server": "dist/server.cjs"
+  },
+  "files": [
+    "dist/server.cjs",
+    "dist/build-info.json",
+    "LICENSE",
+    "LICENSES",
+    "THIRD-PARTY-NOTICES.md"
+  ],
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "check": "tsc --noEmit",
+    "test": "node --test tests/*.test.mjs",
+    "prepack": "node tools/build.mjs"
+  },
+  "devDependencies": {
+    "@open-sauce/core": "file:vendor/open-sauce-core-ce601f0.tgz",
+    "vscode-languageserver": "9.0.1",
+    "vscode-languageserver-textdocument": "1.0.12",
+    "esbuild": "0.28.2",
+    "typescript": "5.9.3",
+    "@types/node": "24.10.1"
+  }
+}
