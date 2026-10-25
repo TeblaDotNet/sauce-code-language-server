@@ -4,7 +4,7 @@ import {complete} from './completion.js';
 // Explicit streams keep this service editor-independent. stdout is exclusively JSON-RPC.
 const connection=createConnection(process.stdin,process.stdout);
 const documents=new TextDocuments(TextDocument);
-connection.onInitialize(()=>({capabilities:{textDocumentSync:TextDocumentSyncKind.Incremental,completionProvider:{triggerCharacters:['<','('],resolveProvider:false}},serverInfo:{name:'Sauce Code Language Server',version:'0.2.0'}}));
+connection.onInitialize(()=>({capabilities:{textDocumentSync:TextDocumentSyncKind.Incremental,completionProvider:{triggerCharacters:['<','('],resolveProvider:false}},serverInfo:{name:'Sauce Code Language Server',version:'0.2.1'}}));
 connection.onCompletion(params=>{
  // A stable protocol error avoids leaking engine-specific TypeErrors into replies.
  if(typeof params?.textDocument?.uri!=='string'||!Number.isInteger(params?.position?.line)||!Number.isInteger(params?.position?.character)||params.position.line<0||params.position.character<0)

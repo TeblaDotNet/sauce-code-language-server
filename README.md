@@ -1,19 +1,19 @@
 # Sauce Code Language Server
 
-Open Sauce Food's editor-independent Language Server Protocol service. Version 0.2.0 provides completion only, over standard input/output. Core owns parsing and vocabulary; this repository owns document synchronization, cursor context and completion ranking.
+Open Sauce Food's editor-independent Language Server Protocol service. Version 0.2.1 provides completion only, over standard input/output. Core owns parsing and vocabulary; this repository owns document synchronization, cursor context and completion ranking.
 
 ## Use
 
-The accompanying Open Sauce Food VS Code extension 0.3.0 bundles this service. Install its VSIX and open a `.opensauce` file; no separate Core or Node installation is required in VS Code.
+The accompanying Open Sauce Food VS Code extension 0.3.1 bundles this service. Install its VSIX and open a `.opensauce` file; no separate Core or Node installation is required in VS Code.
 
 For another editor, install a locally built package with Node.js 24 or later:
 
 ```sh
-npm install -g /path/to/open-sauce-language-server-0.2.0.tgz
+npm install -g /path/to/open-sauce-language-server-0.2.1.tgz
 opensauce-language-server --stdio
 ```
 
-Configure an ordinary LSP client with command `opensauce-language-server`, argument `--stdio`, filetype `opensauce`, and `.opensauce` file detection. The process speaks framed JSON-RPC on stdin/stdout, not an interactive terminal interface. No VS Code APIs, workspace execution, network calls or installation-time downloads are used at runtime. Neovim host integration has not been tested; the existing dependency-free Vim plugin remains independent.
+Configure an ordinary LSP client with command `opensauce-language-server`, argument `--stdio`, filetype `opensauce`, and `.opensauce` file detection. The process speaks framed JSON-RPC on stdin/stdout, not an interactive terminal interface. No VS Code APIs, workspace execution, network calls or installation-time downloads are used at runtime. The existing dependency-free Vim plugin remains independent. See the native Neovim validation below.
 
 ## Completion
 
@@ -41,9 +41,9 @@ pnpm pack
 
 Set `OSF_CORPUS` to the sibling Corpus checkout before testing to run all 490 real recipes and representative local-declaration checks. Without it that one integration test is explicitly skipped. Unit and protocol tests need no sibling repository. Tests exercise actual stdio initialization, incremental/full updates, completion, isolation, close and clean shutdown. `test-dist/` is build-generated test support, excluded from installation packages.
 
-Core is pinned to **2d94d35ef5e8c5c2e7bfcabb36efe452e5587728**, including the integrated knowledge expansion and enrichment, via `vendor/open-sauce-core-2d94d35.tgz`. `core-input.json` records archive SHA-256 and an installed dist/knowledge content hash. Builds reject changed inputs, rather than silently using another sibling checkout or published 0.1.0 Core package. The vendor archive is an immutable development input with original notices, not a manually maintained vocabulary fork.
+Core is pinned to **8cf1de9af9742db231999d3ff088468f2d3e43e2**, using the canonical-only Stage 4B distribution, via `vendor/open-sauce-core-8cf1de9.tgz`. `core-input.json` records archive SHA-256 and an installed dist content hash plus canonical vocabulary/resource digests. Builds reject changed inputs, rather than silently using another sibling checkout or published 0.1.0 Core package. The vendor archive is an immutable development input with original notices, not a manually maintained vocabulary fork.
 
-The build loads Core's indexed vocabulary and generates a compact semantic snapshot, removing editorial/evidence/measurement fields that completion does not use. Core's parser and Vocabulary implementation and the snapshot are bundled once into `dist/server.cjs`. No Core YAML, source maps, recipes, tests, fonts or logos are included in the runtime package. `dist/build-info.json` records input and output checksums. Runtime dependencies are bundled; the npm installation package has no runtime dependency downloads. LSP libraries are pinned to the established 9.0.1 API line, with text-document support 1.0.12; development tools and transitive dependencies are locked.
+The build uses loadBundledCanonicalVocabulary() and a reviewed semantic allowlist in tools/snapshot.mjs. It retains identity, accepted names/plurals/aliases and compatibility warnings, locale-specific exact names, parts/variants/states, targets, structural groups and reference eligibility. It excludes editorial sources, prose, review metadata, photographs, measurements and browsing taxonomy. Knowledge is never loaded or required. Core's parser and Vocabulary implementation and the snapshot are bundled once into `dist/server.cjs`. No Core YAML, source maps, recipes, tests, fonts or logos are included in the runtime package. `dist/build-info.json` records input and output checksums. Runtime dependencies are bundled; the npm installation package has no runtime dependency downloads. LSP libraries are pinned to the established 9.0.1 API line, with text-document support 1.0.12; development tools and transitive dependencies are locked.
 
 The exact revision can be updated only by deliberately repacking the approved Core checkout, reviewing a new pin and regenerating/testing the bundle. No Core API modification was needed for v1.
 
@@ -57,7 +57,7 @@ LSP v2 should first improve context fixtures, locale-aware presentation, local-c
 
 Copyright 2026 Tebla and Open Sauce Food contributors. Server/tooling/test code: MIT. Authored documentation: CC BY 4.0. Generated project-owned canonical data: CC0 1.0. Core and dependency notices remain intact; see LICENSE, LICENSES and THIRD-PARTY-NOTICES.md. No publication has been performed.
 
-## Standalone executable (v0.2.0)
+## Standalone executable (v0.2.1)
 
 Copy the appropriate standalone/<target>/ distribution to a permanent location,
 retaining LICENSE, LICENSES and THIRD-PARTY-NOTICES.md. The supplied server.cjs
@@ -71,7 +71,7 @@ opensauce-language-server --stdio
 
 Windows uses opensauce-language-server.exe. No Node.js, Bun, npm, pnpm, Core
 installation or external knowledge folder is required for this executable.
-The ordinary npm package still requires Node.js 24+. VS Code 0.3.0 instead bundles
+The ordinary npm package still requires Node.js 24+. VS Code 0.3.1 instead bundles
 the Node-compatible server and uses the editor's own runtime.
 
 The executable compiles the same dist/server.cjs used by Node and VS Code.
@@ -82,10 +82,9 @@ Malformed completion parameters return InvalidParams rather than an
 engine-dependent TypeError.
 
 Current Core inventory: 414 ingredient, 255 equipment and 300 process/action
-identities (969 total). Canonical data, plurals, aliases, categories and reference
+identities (969 total). Canonical data, plurals, aliases and reference
 eligibility are retained; 911 full editorial enrichment records are not bundled.
-The vendor archive's shipped runtime/data were compared byte-for-byte with the
-approved Core build; the npm package omits three knowledge-folder READMEs.
+The vendor archive is built from the exact detached Core commit and contains its generated canonical resource, not the former mixed knowledge directory.
 
 ### Build and validate standalone
 
@@ -136,7 +135,6 @@ native omnifunc completion; try <velv under ::instructions or (pasta extr under
 The dependency-free syntax plugin itself remains unchanged.
 
 API reference: [Neovim native LSP documentation](https://neovim.io/doc/user/lsp/).
-Neovim was not installed in the validation environment; this configuration has
-not received a native Neovim host test.
+Stage 5 tests the refreshed executable with an isolated Neovim configuration when available; see VALIDATION.md for the exact host version and results. The previous server was also manually tested by the user. Theme-dependent syntax-group colour differences are optional future polish, not a migration blocker.
 
 Bun packaging API: [standalone executables](https://bun.sh/docs/bundler/executables).

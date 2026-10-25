@@ -6,8 +6,11 @@
     "equipment": 255,
     "process": 300
   },
-  "tarball": "vendor/open-sauce-core-2d94d35.tgz",
-  "sha256": "580710c036b7c5de06b5f158e9f51a8a1ff3b56c21241d663b2f629ce7188312",
-  "coreCommit": "2d94d35ef5e8c5c2e7bfcabb36efe452e5587728",
-  "runtimeHash": "9d1e685cc2a1ca142935fbbcca0d4fca47d0f595a34e61a573fc2094dfaef080"
+  "tarball": "vendor/open-sauce-core-8cf1de9.tgz",
+  "sha256": "bbf6c23344d0a110b48c07c41dfba2f507ec3e30e3da8a3b56fc29965e91d2df",
+  "coreCommit": "8cf1de9af9742db231999d3ff088468f2d3e43e2",
+  "runtimeHash": "c76d009b55e968214561b22bceba791ca269c98b90e0cf3f31be2b4dd7f15361",
+  "canonicalDigest": "20f61b876c2d966e04f9b145343297e728bc9cd8488af2f245f326d3c704a046",
+  "canonicalDigestBasis": "SHA-256 of stable JSON for bundled canonical runtime entries",
+  "canonicalResourceSha256": "3281d344becba740f4b9e44339708ea4ee49ef68992b796674e02193b1066606"
 }

@@ -1,3 +1,22 @@
+# Stage 5 canonical-only refresh — 25 October 2026
+
+Language Server 0.2.1 uses Core 8cf1de9af9742db231999d3ff088468f2d3e43e2.
+core-input.json pins the archive, installed runtime, canonical resource and canonical digest.
+All 969 identities remain: 414 ingredients, 255 equipment and 300 processes.
+
+- Build, type checking and 44 unit/protocol/Corpus tests passed with no skipped cases.
+- All 490 Corpus ASTs match the supported bundled Core vocabulary.
+- 2,344 complete completion responses match the previous server exactly.
+- Actual old/new stdio comparison preserves completion responses and capabilities; only serverInfo.version changes from 0.2.0 to 0.2.1.
+- Windows standalone matches Node protocol output in normal, early-exit, EOF and termination modes, outside the repository with empty runtime search paths.
+- Native Neovim 0.12.6 acceptance passes recognition, syntax, attachment, six completion/suppression cases, local priority and shutdown. The isolated test waits for actual didChange notifications, never arbitrary sleeps. User configuration and Vim plugin are unchanged.
+- Windows, Linux x64/ARM64 and macOS x64/ARM64 compile with Bun 1.4.4. Only Windows is natively executed here.
+- Runtime snapshot has no articles, sources, media, review metadata, browsing categories or measurements; semantic fields are explicitly allowlisted.
+
+Final exact source revisions, executable hashes and isolated-profile VSIX results are recorded in the Stage 5 delivery report. Build manifests record source revision and dirty state; distribute only the final clean builds.
+
+The prior validation account below is retained as historical evidence.
+
 # Validation — Standalone Language Server v1
 
 24 October 2026; Language Server 0.2.0 and VS Code extension 0.3.0.

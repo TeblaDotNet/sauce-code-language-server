@@ -7,7 +7,7 @@ test('stdio LSP lifecycle, updates, isolation and shutdown',{timeout:20000},asyn
  const uri='file:///one.opensauce',other='file:///two.opensauce';
  const request=(uri,line,character)=>rpc.sendRequest('textDocument/completion',{textDocument:{uri},position:{line,character}});
  try{
-  const init=await rpc.sendRequest('initialize',{processId:process.pid,rootUri:null,capabilities:{}});assert.equal(init.capabilities.textDocumentSync,2);assert.deepEqual(init.capabilities.completionProvider.triggerCharacters,['<','(']);assert.equal(init.capabilities.hoverProvider,undefined);assert.equal(init.capabilities.diagnosticProvider,undefined);
+  const init=await rpc.sendRequest('initialize',{processId:process.pid,rootUri:null,capabilities:{}});assert.equal(init.serverInfo.version,'0.2.1');assert.equal(init.capabilities.textDocumentSync,2);assert.deepEqual(init.capabilities.completionProvider.triggerCharacters,['<','(']);assert.equal(init.capabilities.hoverProvider,undefined);assert.equal(init.capabilities.diagnosticProvider,undefined);
   await rpc.sendNotification('initialized',{});
   await assert.rejects(rpc.sendRequest('textDocument/completion',{}),e=>e.code===-32602);
   await rpc.sendNotification('textDocument/didOpen',{textDocument:{uri,languageId:'opensauce',version:1,text:'::instructions\n<jul'}});
