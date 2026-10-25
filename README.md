@@ -1,6 +1,6 @@
 # Sauce Code Language Server
 
-Open Sauce Food's editor-independent Language Server Protocol service. Version 0.2.1 provides completion only, over standard input/output. Core owns parsing and vocabulary; this repository owns document synchronization, cursor context and completion ranking.
+Sauce Code's editor-independent Language Server Protocol service. Version 0.2.1 provides completion only, over standard input/output. Core owns parsing and vocabulary; this repository owns document synchronization, cursor context and completion ranking.
 
 ## Use
 
@@ -138,3 +138,7 @@ API reference: [Neovim native LSP documentation](https://neovim.io/doc/user/lsp/
 Stage 5 tests the refreshed executable with an isolated Neovim configuration when available; see VALIDATION.md for the exact host version and results. The previous server was also manually tested by the user. Theme-dependent syntax-group colour differences are optional future polish, not a migration blocker.
 
 Bun packaging API: [standalone executables](https://bun.sh/docs/bundler/executables).
+
+## Project boundaries and contributions
+
+Sauce Code is the language and tooling; Open Sauce Food is the culinary encyclopaedia and recipe collection built using it. Existing opensauce commands, filetype and extension identifiers remain unchanged. Knowledge is optional and is not loaded for editor completion. See the [seven-repository setup map](../core/docs/ecosystem.md), [contribution and AI-development disclosure](../core/CONTRIBUTING.md#development-process), and this repository's [licence scopes](LICENSE). Code review and culinary review are separate.
