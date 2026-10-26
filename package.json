@@ -32,5 +32,13 @@
     "esbuild": "0.28.2",
     "typescript": "5.9.3",
     "@types/node": "24.10.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TeblaDotNet/sauce-code-language-server.git"
+  },
+  "homepage": "https://github.com/TeblaDotNet/sauce-code-language-server#readme",
+  "bugs": {
+    "url": "https://github.com/TeblaDotNet/sauce-code-language-server/issues"
   }
 }
