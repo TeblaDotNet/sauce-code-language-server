@@ -4,6 +4,8 @@ Autocomplete for `.opensauce` files in editors that support the Language Server 
 
 The server suggests ingredients, equipment and actions as you type. It uses Sauce Code's parser and vocabulary, and puts names declared in the current recipe ahead of shared suggestions.
 
+**Related repositories:** [Sauce Code Core](https://github.com/TeblaDotNet/sauce-code) · [VS Code](https://github.com/TeblaDotNet/sauce-code-vscode) · [Vim/Neovim](https://github.com/TeblaDotNet/sauce-code-vim)
+
 ## Install
 
 **VS Code:** the [Sauce Code extension](https://github.com/TeblaDotNet/sauce-code-vscode) already includes this server.
