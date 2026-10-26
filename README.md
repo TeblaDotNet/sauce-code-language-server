@@ -4,9 +4,11 @@ This language server brings Sauce Code autocomplete to editors that support LSP.
 
 ## Use
 
+Download standalone archives or the Node-compatible tarball from [GitHub Releases](https://github.com/TeblaDotNet/sauce-code-language-server/releases/latest). Verify SHA256SUMS.txt and retain the licence notices. Windows x64 is native-tested; Linux/macOS targets are cross-compiled only.
+
 The VS Code extension 0.3.1 includes the server. Install its VSIX and open a `.opensauce` file; you do not need to install Core or Node.js separately.
 
-For another editor, install a locally built package with Node.js 24 or later:
+For another editor, use the standalone executable without Node, or install the downloaded tarball with Node.js 24 or later:
 
 ```sh
 npm install -g /path/to/open-sauce-language-server-0.2.1.tgz
